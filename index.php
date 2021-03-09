@@ -18,22 +18,39 @@ and open the template in the editor.
             <header><h1>Telefonkönyv</h1></header>
             <nav>
                 <ul>
-                   
+
                     <li id="beolvas"><a href="#">Beolvas</a></li>
                 </ul>
 
             </nav>
 
             <section>
-                <p for="nev">név:</p>
-                <input type="text" id="nev" name="nev" value="Valaki Vagyok">
-                <p for="tel">tel:</p>
-                <input type="text" id="tel" name="tel" value="03-30-1234-567">
-                <p for="kep">kép:</p>
-                <input type="text" id="kep" name="kep">
-                <br>
-                <button id="kuld">Küld</button>
-
+                <form class="urlap">
+                    <p for="nev">név:</p>
+                    <input type="text" id="nev" name="nev" value="Valaki Vagyok">
+                    <p for="tel">tel:</p>
+                    <input type="text" id="tel" name="tel" value="03-30-1234-567">
+                    <p for="kep">kép:</p>
+                    <input type="text" id="kep" name="kep">
+                    <br>
+                    <button id="kuld">Küld</button>
+                </form>
+            </section>
+            <section>
+                <form class="urlap szerkesztes elrejt">
+                    <p for="id2">ID:</p>
+                    <input type="text" id="nev" name="id2" >
+                    <p for="nev2">név:</p>
+                    <input type="text" id="nev" name="nev2" >
+                    <p for="tel2">tel:</p>
+                    <input type="text" id="tel" name="tel2" >
+                    <p for="kep2">kép:</p>
+                    <input type="text" id="kep" name="kep2">
+                    <br>
+                    <input type="button" id="modosit" value="Módosít" novalidate>
+                    <br>
+                    <input type="button" id="megse" value="Mégse" novalidate>
+                </form>
             </section>
             <article>
 

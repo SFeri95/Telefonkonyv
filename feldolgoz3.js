@@ -2,7 +2,10 @@ $(function(){
    
     $("#beolvas").on("click",beolvas);
     $("#kuld").on("click",adatKuld);   
-    
+    $("article").delegate(".torol","click",adatTorol);
+    $("article").delegate(".szerkestes","click",adatModosit);
+    $(".megse").on("click", adatMegse );
+    $(".modosit").on("click", adatMegse );
 });
 var telefonkonyvem = [];
 
@@ -42,19 +45,71 @@ function beolvas(){
        }
     });
 }
+
+function adatModosit(){
+    console.log("Modosít");
+    $(".szerkesztes").removeClass("elrejt");
+    var index =$(this).attr("id");
+    console.log(index);
+        $("#id2").val();
+        $("#nev2").val();
+        $("#tel2").val();
+        $("#kep2").val();
+}
+
+function adatMegse(){
+     $(".szerkesztes").addClass("elrejt");
+    }
+    
+    function adatModosit(){
+            var editszemely = {
+        ID : $("#id2").val(),
+        nev : $("#nev2").val(),
+        tel : $("#tel2").val(),
+        kep : $("#kep2").val()
+    };
+
+    $.ajax({
+        type: "PUT",
+        url: "modosít.php",
+        data: editSzemely,
+        success: function(){
+           
+            beolvas();
+        },
+        error:function(){
+            alert("Hiba az adatok módositásakor!");
+        }
+    });
+    }
 function kiir(){
     $("article").empty();
     for (var i = 0; i < telefonkonyvem.length; i++) {
-        var nev = telefonkonyvem[i].nev;
-        var tel = telefonkonyvem[i].tel;
-        var kep = telefonkonyvem[i].kep;
-        console.log(nev);
-        var elem = "<div> <h2>"+ nev +"</h2><p>"+ tel +"</p><p>"+ kep +"</p><button>Töröl</button></div>";
+        
+        var szemely = telefonykonyvem[i];
+        
+       var elem = "<div > <h2>" + szemely.nev + "</2> <p class='tel'>" +szemely.tel + "</p> <p class='link'>" + szemely.kep + "</p> <button id=" + szemely.ID + "class='torol'>Töröl</button>\n\<button id=" + i + " class='szerkeszt'>Szerkeszt</button><hr> </div>";
 
         $("article").append(elem);
     }
 }
 
-//function adaTorol(){
-//    console.log("Meghívtam a torol metodust");
-//}
+function adatTorol(){
+    console.log("Meghívtam a töröl metódust!");
+    var ID = $(this).attr("id");
+    console.log(ID);
+    var aktElem = $(this).closest("div");
+    $.ajax({
+        type: "DELETE",
+        url: "torles.php?ID=" + ID,
+        success: function(){
+            console.log("Megtörtént a törlés");
+            aktElem.remove();
+        },
+        error:function(){
+            alert("Hiba az adatok törlésekor!");
+        }
+    });
+}
+
+
